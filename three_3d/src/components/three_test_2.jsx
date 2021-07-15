@@ -143,9 +143,17 @@ class Scene extends Component {
 				geometry = new THREE.ConeGeometry(size, size, 256*segmentMultiplier);
 				break;
             case 'cylinder':
-                console.log("this.props.children:",this.props.children); 
+                console.log("this.props.geometry:",this.props.geometry); 
                 geometry = new THREE.CylinderGeometry(1, 1, 4, 10);
                 break;
+            case 'torus':
+                console.log("this.props.geometry:",this.props.geometry); 
+                geometry = new THREE.TorusGeometry( 1, 0.3, 16, 100 );
+                break;     
+            case 'torusknot':
+                console.log("this.props.geometry:",this.props.geometry); 
+                geometry = new THREE.TorusKnotGeometry( 1, 0.3, 100, 16 );
+                break;  
 			default:
 				break;
 		}

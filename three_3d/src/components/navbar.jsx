@@ -63,6 +63,9 @@ class Navbar_ extends React.Component{
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"box"})}}>box</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"sphere"})}}>sphere</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"cone"})}}>cone</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({geometry:"cylinder"})}}>cylinder</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({geometry:"torus"})}}>torus</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({geometry:"torusknot"})}}>torusknot</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Surface" id="collasible-nav-dropdown">
                         <p>Value {this.state.surface}</p>
