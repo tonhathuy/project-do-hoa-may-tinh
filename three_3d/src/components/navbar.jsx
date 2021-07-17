@@ -14,7 +14,7 @@ const Body_ = (props) => {
     return (
     <>
     <ReactDatGui initialDatState={props.data} geometry={props.geometry} handleUpdate={props.handleUpdate}/>
-    <div id="webgl" style={{position: "absolute"}}>
+    <div id="webgl" style={{ width: "100%", height: "900px"}}>
     <Three_test_2 data={props.data} geometry={props.geometry} surface={props.surface} light={props.light} animation={props.animation}/>
     </div>
     </>
@@ -88,7 +88,6 @@ class Navbar_ extends React.Component{
                         <NavDropdown.Item onClick={() => {this.setState({animation:"animation3"})}}>animation 3</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({animation:"remove"})}}>remove</NavDropdown.Item>
                     </NavDropdown>
-                    <p>{this.state.data.string}</p>
                 </Nav>
                 
             </Navbar.Collapse>

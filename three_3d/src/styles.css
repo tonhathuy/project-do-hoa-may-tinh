@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  margin: 0 20px;
+  /* margin: 0 20px; */
   background-color: #f3eee8;
   color: #53504d;
   font: 14px/22px Arial, sans-serif;
@@ -22,8 +22,8 @@ body {
 }
 
 .react-dat-gui-relative-position {
-  position: relative;
-  margin-top: 2em;
+  position: absolute;
+  margin-top: 5em;
   width: 300px;
   min-width: 300px;
   right: 0;

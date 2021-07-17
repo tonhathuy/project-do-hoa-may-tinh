@@ -270,7 +270,7 @@ class Scene extends Component {
         
         this.renderer.render(this.scene, this.camera);
         // console.log(this.props.animation );
-        if (this.props.animation == 'remove'){
+        if (this.props.animation === 'remove'){
             this.stop();
             console.log(this.props.animation );
         }
@@ -321,7 +321,7 @@ class Scene extends Component {
     render() {
         return (
         <div
-            style={{ width: "800px", height: "600px" }}
+            style={{ width: "100%", height: "100%" }}
             ref={(mount) => {
             this.mount = mount;
             }}
