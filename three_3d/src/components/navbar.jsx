@@ -83,9 +83,10 @@ class Navbar_ extends React.Component{
                     </NavDropdown>  
                     <NavDropdown title="Animation" id="collasible-nav-dropdown">
                         <p>Value {this.state.animation}</p>
-                        <NavDropdown.Item onClick={() => {this.setState({animation:"box"})}}>box</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => {this.setState({animation:"box"})}}>sphere</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => {this.setState({animation:"box"})}}>cone</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({animation:"animation1"})}}>animation 1</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({animation:"animation2"})}}>animation 2</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({animation:"animation3"})}}>animation 3</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({animation:"remove"})}}>remove</NavDropdown.Item>
                     </NavDropdown>
                     <p>{this.state.data.string}</p>
                 </Nav>

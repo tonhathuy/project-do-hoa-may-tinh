@@ -5,7 +5,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import  TransformControls  from '../source/TransformControls.js'
 import fileGlb from './bread.glb' // GLB FILE
 
-
 function getPlane(size) {
 	var geometry = new THREE.PlaneGeometry(size, size);
 	var material = new THREE.MeshPhongMaterial({
@@ -132,7 +131,7 @@ class Scene extends Component {
 
 
         this.mount.appendChild(this.renderer.domElement);
-        this.start();
+        // this.start();
     }
       // UPDATE REACT STATE AND INPUT VALUE
     updateSetState = () => {
@@ -270,7 +269,15 @@ class Scene extends Component {
 
         
         this.renderer.render(this.scene, this.camera);
-
+        // console.log(this.props.animation );
+        if (this.props.animation == 'remove'){
+            this.stop();
+            console.log(this.props.animation );
+        }
+        else{
+            this.start();
+        }
+        
     }
 
     componentWillUnmount() {
@@ -280,9 +287,8 @@ class Scene extends Component {
     
 
     start() {
-        if (!this.frameId) {
+        console.log('okie');
         this.frameId = requestAnimationFrame(this.animate);
-        }
     }
 
     stop() {
@@ -290,9 +296,19 @@ class Scene extends Component {
     }
 
     animate() {
-        // this.cube.rotation.x += 0.01;
-        // this.cube.rotation.y += 0.01;
-
+        switch (this.props.animation) {
+			case 'animation1':
+				this.cube.rotation.x += 0.01;
+				break;
+			case 'animation2':
+				this.cube.rotation.y += 0.01;
+				break;
+			case 'animation3':
+				this.cube.rotation.z += 0.01;
+				break;
+			default:
+				break;
+		}
         this.renderScene();
         this.frameId = window.requestAnimationFrame(this.animate);
     }
