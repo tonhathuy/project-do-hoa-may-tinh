@@ -30,7 +30,28 @@ function getSphere(size) {
 
 	return mesh;
 }
+class CustomSinCurve extends THREE.Curve {
 
+	constructor( scale = 1 ) {
+
+		super();
+
+		this.scale = scale;
+
+	}
+
+	getPoint( t, optionalTarget = new THREE.Vector3() ) {
+
+		const tx = t * 3 - 1.5;
+		const ty = Math.sin( 2 * Math.PI * t );
+		const tz = 0;
+
+		return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale );
+
+	}
+
+}
+const path = new CustomSinCurve( 0.8);
 class Scene extends Component {
     constructor(props) {
         super(props);
@@ -170,16 +191,22 @@ class Scene extends Component {
 				break;
             case 'cylinder':
                 console.log("this.props.geometry:",this.props.geometry); 
-                geometry = new THREE.CylinderGeometry(1, 1, 4, 10);
+                geometry = new THREE.CylinderGeometry(0.5, 1, 4, 10);
                 break;
             case 'torus':
                 console.log("this.props.geometry:",this.props.geometry); 
-                geometry = new THREE.TorusGeometry( 1, 0.3, 16, 100 );
+                geometry = new THREE.TorusGeometry( 0.5, 0.1, 16, 100 );
                 break;     
             case 'torusknot':
                 console.log("this.props.geometry:",this.props.geometry); 
-                geometry = new THREE.TorusKnotGeometry( 1, 0.3, 100, 16 );
-                break;  
+                geometry = new THREE.TorusKnotGeometry( 0.5, 0.1, 100, 16 );
+                break;
+            case 'tube':
+                console.log("this.props.geometry:",this.props.geometry); 
+                geometry = new THREE.TubeGeometry( path, 100, 0.1, 20, false );
+                break;
+            // case 'parametric':
+            //      break;                   
 			default:
 				break;
 		}
