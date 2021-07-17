@@ -13,9 +13,10 @@ const Body_ = (props) => {
     
     return (
     <>
-    <ReactDatGui initialDatState={props.data} geometry={props.geometry} handleUpdate={props.handleUpdate}/>
-    <div id="webgl" style={{ width: "100%", height: "900px"}}>
+    
+    <div id="webgl" style={{position: "absolute", width: "100%", height: "100%"}}>
     <Three_test_2 data={props.data} geometry={props.geometry} surface={props.surface} light={props.light} animation={props.animation}/>
+    <ReactDatGui initialDatState={props.data} geometry={props.geometry} handleUpdate={props.handleUpdate}/>
     </div>
     </>
     )

@@ -8,6 +8,7 @@ body {
   background-color: #f3eee8;
   color: #53504d;
   font: 14px/22px Arial, sans-serif;
+  overflow: hidden; /* Hide scrollbars */
 }
 
 .App {
@@ -19,11 +20,12 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  
 }
 
 .react-dat-gui-relative-position {
   position: absolute;
-  margin-top: 5em;
+  /* margin-top: 5em; */
   width: 300px;
   min-width: 300px;
   right: 0;
