@@ -84,12 +84,12 @@ class Scene extends Component {
         camera.position.z = 5;
         camera.lookAt(new THREE.Vector3(0, 0, 0));
         
-        scene.fog = new THREE.FogExp2(0xffffff, 0.2);
+        
         scene.add(cube);
         scene.add(light);
         scene.add(plane);
         scene.add( this.gridHelper );
-        renderer.setClearColor("#000000");
+        renderer.setClearColor('rgb(120, 120, 120)');
         renderer.setSize(width, height);
 
         this.scene = scene;
@@ -98,12 +98,39 @@ class Scene extends Component {
         this.material = material;
         this.cube = cube;
         
+        
+        // this.control = new TransformControls( this.camera, this.renderer.domElement );
+        // this.control.addEventListener( 'change', () => { this.renderer.render(this.scene, this.camera); });
+        // this.control.setSize(1);
+        // this.control.setMode( "translate" );
+        // this.controls = new this.OrbitControls(this.camera);
+        
         // var TransformControls = require('../controls/TransformControls')(THREE);
         this.control = new TransformControls( this.camera, this.renderer.domElement );
         this.control.addEventListener( 'change', () => { this.renderer.render(this.scene, this.camera); });
         this.control.setSize(1);
-        this.control.setMode( "translate" );
-        this.controls = new this.OrbitControls(this.camera);
+        
+        // this.controls = new this.OrbitControls(this.camera);
+        // EVENT LISTNER TO DISABLE ORBIT MOVE
+        this.control.addEventListener( 'dragging-changed', ( event ) => {
+            // this.updateSetState();
+            this.control.setMode( "translate" );
+            this.orbit.enabled = ! event.value});
+        
+        // ORBIT CONTROL
+        this.orbit = new this.OrbitControls( this.camera, this.renderer.domElement );
+        this.camera.position.set( 0, 2, 2 );
+        this.orbit.update();
+    
+        //EVENT LISTNER TO VIEW MODEL IN DIFFERENT POSITIONS
+        this.orbit.addEventListener("change", () => this.renderer.render(this.scene, this.camera));
+            
+        // ATTACH MODEL TO TRANSFORM CONTROL
+        this.control.attach(this.cube);
+        this.scene.add( this.control );
+        this.orbit.update();
+
+
         this.mount.appendChild(this.renderer.domElement);
         this.start();
     }
@@ -159,7 +186,10 @@ class Scene extends Component {
 		}
         switch (this.props.surface) {
 			case 'point':
-				material = new THREE.PointsMaterial({ size: 0.05, transparent: true });
+                material = new THREE.PointsMaterial({
+                    color: 0x00afaf,
+                    size: 0.05
+                });
 				break;
 			case 'line':
 				material = new THREE.MeshNormalMaterial({
@@ -167,7 +197,7 @@ class Scene extends Component {
                     transparent: true,
                     opacity: 1,
                     wireframe: true,
-                    wireframeLinewidth: 5,
+                    wireframeLinewidth: 2,
                     wireframeLinejoin: 'round',
                     wireframeLinecap: 'round',
                 });
@@ -197,7 +227,13 @@ class Scene extends Component {
 			default:
 				break;
 		}
-        this.cube = new THREE.Mesh(geometry, material );
+        if (this.props.surface == 'point'){
+            this.cube = new THREE.Points(geometry, material );
+            
+        }else{ this.cube = new THREE.Mesh(geometry, material );}
+        // console.log(this.cube.geometry.parameters.height/2);
+        this.cube.position.y = 1;
+        // this.cube = new THREE.Points(geometry, material );
         
         // camera.position.z = 4;
         this.camera.fov = this.props.data.fov
@@ -208,20 +244,33 @@ class Scene extends Component {
         this.scene.add( light );
         this.scene.add( this.gridHelper );
         
-        // this.scene.add(transformControls);
-        // renderer.setClearColor("#000000");
-        // renderer.setSize(width, height);
-
-        // this.scene = scene;
-        // this.camera = camera;
-        // this.renderer = renderer;
-        // this.material = material;
-        // this.cube = cube;
-        this.renderer.render(this.scene, this.camera);
+        this.control.addEventListener( 'change', () => { this.renderer.render(this.scene, this.camera); });
+        this.control.setSize(1);
         
-        this.renderer.setClearColor('rgb(120, 120, 120)');
-        // this.mount.appendChild(this.renderer.domElement);
-        // this.start();
+        // this.controls = new this.OrbitControls(this.camera);
+        // EVENT LISTNER TO DISABLE ORBIT MOVE
+        this.control.addEventListener( 'dragging-changed', ( event ) => {
+            // this.updateSetState();
+            this.control.setMode(this.props.data.objectTransform);
+            
+            this.orbit.enabled = ! event.value});
+        
+        // ORBIT CONTROL
+        // this.orbit = new this.OrbitControls( this.camera, this.renderer.domElement );
+        this.camera.position.set( 0, 2, 2 );
+        this.orbit.update();
+    
+        //EVENT LISTNER TO VIEW MODEL IN DIFFERENT POSITIONS
+        this.orbit.addEventListener("change", () => this.renderer.render(this.scene, this.camera));
+            
+        // ATTACH MODEL TO TRANSFORM CONTROL
+        this.control.attach(this.cube);
+        this.scene.add( this.control );
+        this.orbit.update();
+
+        
+        this.renderer.render(this.scene, this.camera);
+
     }
 
     componentWillUnmount() {

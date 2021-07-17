@@ -27,11 +27,12 @@ class Navbar_ extends React.Component{
         super(props);
         const initialDatState = {
             string: "Camera",
-            far: 66,
-            fov: 66,
-            near: 0.2,
+            far: 1000,
+            fov: 75,
+            near: 1,
             colorObject: "#2FA1D6",
             lightPosition: 2,
+            objectTransform: "translate"
         };
         this.state = { 
             geometry: "box",

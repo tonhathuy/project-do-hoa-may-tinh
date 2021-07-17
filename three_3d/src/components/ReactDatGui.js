@@ -16,10 +16,11 @@ class DatGUI extends Component {
 
     const initialDatState = {
       string: "Camera",
-      far: 66,
-      fov: 66,
-      near: 80,
+      far: 1000,
+      fov: 45,
+      near: 1,
       colorObject: "#2FA1D6",
+      objectTransform: "position"
     };
 
     this.state = {
@@ -45,8 +46,8 @@ class DatGUI extends Component {
             path="far"
             label="Far"
             min={0}
-            max={6000}
-            step={10}
+            max={20}
+            step={1}
           />
           <DatNumber
             path="fov"
@@ -60,8 +61,8 @@ class DatGUI extends Component {
             path="near"
             label="Near"
             min={0}
-            max={1}
-            step={0.1}
+            max={20}
+            step={1}
           />
           <DatNumber
             path="lightPosition"
@@ -71,7 +72,11 @@ class DatGUI extends Component {
             step={0.2}
           />
           <DatColor label="Color Object" path="colorObject" />
-          
+          <DatSelect
+            label="Object Transform"
+            path="objectTransform"
+            options={["translate", "rotate", "scale"]}
+          />
         </DatGui>
       </main>
     );
