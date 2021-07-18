@@ -69,7 +69,6 @@ class Navbar_ extends React.Component{
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"torus"})}}>torus</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"torusknot"})}}>torusknot</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"tube"})}}>tube</NavDropdown.Item>
-                        {/* <NavDropdown.Item onClick={() => {this.setState({geometry:"parametric"})}}>parametric</NavDropdown.Item> */}
                     </NavDropdown>
                     <NavDropdown title="Surface" id="collasible-nav-dropdown" className="ml-4">
                         <p>Value {this.state.surface}</p>

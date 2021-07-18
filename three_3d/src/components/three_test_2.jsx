@@ -4,7 +4,6 @@ import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import  TransformControls  from '../source/TransformControls.js'
 import fileGlb from './bread.glb' // GLB FILE
-
 function getPlane(size) {
 	var geometry = new THREE.PlaneGeometry(size, size);
 	var material = new THREE.MeshPhongMaterial({
@@ -204,9 +203,7 @@ class Scene extends Component {
             case 'tube':
                 console.log("this.props.geometry:",this.props.geometry); 
                 geometry = new THREE.TubeGeometry( path, 100, 0.1, 20, false );
-                break;
-            // case 'parametric':
-            //      break;                   
+                break;        
 			default:
 				break;
 		}
