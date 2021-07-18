@@ -69,25 +69,35 @@ class Navbar_ extends React.Component{
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"torus"})}}>torus</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"torusknot"})}}>torusknot</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({geometry:"tube"})}}>tube</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({geometry:"teapot"})}}>teapot</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({geometry:"tetrahedron"})}}>tetrahedron</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({geometry:"octahedron"})}}>octahedron</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({geometry:"dodecahedron"})}}>dodecahedron</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({geometry:"icosahedron"})}}>icosahedron</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Surface" id="collasible-nav-dropdown" className="ml-4">
                         <p>Value {this.state.surface}</p>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"point"})}}>point</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"line"})}}>line</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => {this.setState({surface:"solid"})}}>solid</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"phong"})}}>phong</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"lambert"})}}>lambert</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"standard"})}}>standard</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"default"})}}>default</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Light" id="collasible-nav-dropdown" className="ml-4">
                         <p>Value {this.state.light}</p>
                         <NavDropdown.Item onClick={() => {this.setState({light:"point"})}}>point</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({light:"ambient"})}}>ambient</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({light:"spot"})}}>spot</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({light:"directional"})}}>directional</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({light:"remove"})}}>remove</NavDropdown.Item>
-                    </NavDropdown>  
+                    </NavDropdown>
                     <NavDropdown title="Animation" id="collasible-nav-dropdown" className="ml-4">
                         <p>Value {this.state.animation}</p>
                         <NavDropdown.Item onClick={() => {this.setState({animation:"animation1"})}}>animation 1</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({animation:"animation2"})}}>animation 2</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({animation:"animation3"})}}>animation 3</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({animation:"animation4"})}}>animation 4</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({animation:"remove"})}}>remove</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>

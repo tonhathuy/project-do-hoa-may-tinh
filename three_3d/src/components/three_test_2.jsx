@@ -3,7 +3,37 @@ import * as THREE from "three";
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import  TransformControls  from '../source/TransformControls.js'
+import { TeapotGeometry } from "../source/TeapotGeometry";
 import fileGlb from './bread.glb' // GLB FILE
+let flag = false;
+const getAmbientLight = (color, intensity) => {
+    let light = new THREE.AmbientLight(color, intensity);
+    light.castShadow = true;
+  
+    return light;
+  }
+const getSpotLight = (color, intensity) => {
+    let light = new THREE.SpotLight(color, intensity);
+    light.castShadow = true;
+  
+    light.shadow.bias = 0.001;
+    light.shadow.mapSize.width = 2048;
+    light.shadow.mapSize.height = 2048;
+  
+    return light;
+  }
+  
+  const getDirectionalLight = (color, intensity) => {
+    let light = new THREE.DirectionalLight(color, intensity);
+    light.castShadow = true;
+  
+    light.shadow.camera.left = -10
+    light.shadow.camera.bottom = -10
+    light.shadow.camera.right = 10
+    light.shadow.camera.top = 10
+  
+    return light;
+  }
 function getPlane(size) {
 	var geometry = new THREE.PlaneGeometry(size, size);
 	var material = new THREE.MeshPhongMaterial({
@@ -173,7 +203,7 @@ class Scene extends Component {
         plane.rotation.x = Math.PI/2;
         this.scene.add(plane);
         var sphere = getSphere(0.05);
-        var size = 1
+        var size = 0.5
 		var segmentMultiplier = 1;
         var geometry
         var material
@@ -190,7 +220,7 @@ class Scene extends Component {
 				break;
             case 'cylinder':
                 console.log("this.props.geometry:",this.props.geometry); 
-                geometry = new THREE.CylinderGeometry(0.5, 1, 4, 10);
+                geometry = new THREE.CylinderGeometry(0.5, 0.5, 1, 32);
                 break;
             case 'torus':
                 console.log("this.props.geometry:",this.props.geometry); 
@@ -203,7 +233,27 @@ class Scene extends Component {
             case 'tube':
                 console.log("this.props.geometry:",this.props.geometry); 
                 geometry = new THREE.TubeGeometry( path, 100, 0.1, 20, false );
-                break;        
+                break;
+            case 'teapot':
+                console.log("this.props.geometry:",this.props.geometry); 
+                geometry = new TeapotGeometry(0.5, 0.5, true, true, true, false, true);
+                break;
+            case 'tetrahedron':
+                console.log("this.props.geometry:",this.props.geometry); 
+                geometry = new THREE.TetrahedronGeometry(0.5, 0)
+                break;
+            case 'octahedron':
+                console.log("this.props.geometry:",this.props.geometry); 
+                geometry = new THREE.OctahedronGeometry(0.5, 0)
+                break;
+            case 'dodecahedron':
+                console.log("this.props.geometry:",this.props.geometry); 
+                geometry = new THREE.DodecahedronBufferGeometry(0.5, 0)
+                break; 
+            case 'icosahedron':
+                console.log("this.props.geometry:",this.props.geometry); 
+                geometry = new THREE.IcosahedronGeometry(0.5, 0)
+                break;                                  
 			default:
 				break;
 		}
@@ -225,31 +275,50 @@ class Scene extends Component {
                     wireframeLinecap: 'round',
                 });
 				break;
-			case 'solid':
+			case 'phong':
 				material = new THREE.MeshPhongMaterial({
                     color: this.props.data.colorObject
                 });
 				break;
+            case 'lambert':
+                material = new THREE.MeshLambertMaterial({
+                color: this.props.data.colorObject
+                });
+                break;
+            case 'standard':
+                material = new THREE.MeshStandardMaterial({
+                color: this.props.data.colorObject
+                });
+                break;             
 			default:
                 material = new THREE.MeshBasicMaterial({ color: this.props.data.colorObject });
 				break;
 		}
         switch (this.props.light) {
 			case 'point':
-				light = new THREE.PointLight( 0xffffff, 1);
+				light = new THREE.PointLight( 0xffffff, 0.1);
                 // light.position.set( 50, 50, 50 );
                 light.position.y = this.props.data.lightPosition;
                 light.add(sphere);
 				break;
 			case 'ambient':
-				light = new THREE.AmbientLight( 0x404040 );
+				light = getAmbientLight(0x404040, 1);
 				break;
+            case 'spot':
+                light = getSpotLight(0x404040, 1);
+                light.position.set(5, 5, 5);
+				break;
+            case 'directional':
+                light = getDirectionalLight(0x404040, 1);
+                light.position.set(5, 5, 5);
+                break;          
 			case 'remove':
-				geometry = new THREE.ConeGeometry(size, size, 256*segmentMultiplier);
+				// geometry = this.props.geometry;
 				break;
 			default:
 				break;
 		}
+
         if (this.props.surface == 'point'){
             this.cube = new THREE.Points(geometry, material );
             
@@ -330,6 +399,23 @@ class Scene extends Component {
 			case 'animation3':
 				this.cube.rotation.z += 0.01;
 				break;
+            case 'animation4':
+                if (this.cube.position.y < 3 && flag === false) {
+                    this.cube.position.y += 0.03;
+                  } else if (this.cube.position.y >= 3) {
+                    flag = true;
+                  }
+                
+                  if (this.cube.position.y > 1 && flag === true) {
+                    this.cube.position.y -= 0.03;
+                  } else if (this.cube.position.y <= 1) {
+                    flag = false;
+                  }
+                
+                  this.cube.rotation.x += 0.005;
+                  this.cube.rotation.y += 0.005;
+                  this.cube.rotation.z += 0.005;
+                break;        
 			default:
 				break;
 		}
