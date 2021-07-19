@@ -32,13 +32,14 @@ class Navbar_ extends React.Component{
             fov: 75,
             near: 1,
             colorObject: "#2FA1D6",
+            colorLight: "0xffffff",
             lightPosition: 2,
             objectTransform: "translate"
         };
         this.state = { 
             geometry: "box",
             surface: "default",
-            light: "none",
+            light: "remove",
             animation: "none",
             data: initialDatState,
         };
@@ -82,6 +83,7 @@ class Navbar_ extends React.Component{
                         <NavDropdown.Item onClick={() => {this.setState({surface:"phong"})}}>phong</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"lambert"})}}>lambert</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"standard"})}}>standard</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"solid"})}}>solid</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"default"})}}>default</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Light" id="collasible-nav-dropdown" className="ml-4">
