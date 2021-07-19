@@ -22,7 +22,7 @@ class DatGUI extends Component {
       colorObject: "#2FA1D6",
       colorLight: "0xffffff",
       lightPosition: 2,
-      objectTransform: "translate"
+      objectTransform: "move"
     };
 
     this.state = {
