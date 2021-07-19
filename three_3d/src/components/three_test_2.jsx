@@ -5,6 +5,12 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import TransformControls from "../source/TransformControls.js";
 import { TeapotGeometry } from "../source/TeapotGeometry";
 import checkerboard from '../assets/textures/checkerboard.jpg'
+import img1 from '../assets/textures/1.jpg'
+import fingerprint from '../assets/textures/fingerprints.jpg'
+import purplemap from '../assets/textures/normalMapExample.jpg'
+import particle from '../assets/textures/particle.jpg'
+import scratch from '../assets/textures/scratch.jpg'
+import uit from '../assets/textures/download.png'
 let flag = false;
 const getAmbientLight = (color, intensity) => {
 	let light = new THREE.AmbientLight(color, intensity);
@@ -286,11 +292,41 @@ class Scene extends Component {
 					color: this.props.data.colorObject,
 				});
 				break;
-			case "solid":
+			case "checkerboard":
 				var texture = new THREE.TextureLoader().load(checkerboard);
                 this.geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
                 material = new THREE.MeshBasicMaterial( { map: texture } );
 				break;
+			case "texture1":
+				var texture = new THREE.TextureLoader().load(img1);
+				this.geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+				material = new THREE.MeshBasicMaterial( { map: texture } );
+				break;
+			case "fingerprint":
+				var texture = new THREE.TextureLoader().load(fingerprint);
+				this.geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+				material = new THREE.MeshBasicMaterial( { map: texture } );
+				break;
+			case "purplemap":
+				var texture = new THREE.TextureLoader().load(purplemap);
+				this.geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+				material = new THREE.MeshBasicMaterial( { map: texture } );
+				break;
+			case "particle":
+				var texture = new THREE.TextureLoader().load(particle);
+				this.geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+				material = new THREE.MeshBasicMaterial( { map: texture } );
+				break;
+			case "scratch":
+				var texture = new THREE.TextureLoader().load(scratch);
+				this.geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+				material = new THREE.MeshBasicMaterial( { map: texture } );
+				break;
+			case "uit":
+				var texture = new THREE.TextureLoader().load(uit);
+				this.geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+				material = new THREE.MeshBasicMaterial( { map: texture } );
+				break;													
 			default:
 				material = new THREE.MeshBasicMaterial({
 					color: this.props.data.colorObject,

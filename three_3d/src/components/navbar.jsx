@@ -83,7 +83,13 @@ class Navbar_ extends React.Component{
                         <NavDropdown.Item onClick={() => {this.setState({surface:"phong"})}}>phong</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"lambert"})}}>lambert</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"standard"})}}>standard</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => {this.setState({surface:"solid"})}}>solid</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"checkerboard"})}}>checkerboard</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"texture1"})}}>texture1</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"fingerprint"})}}>fingerprint</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"purplemap"})}}>purplemap</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"particle"})}}>particle</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"scratch"})}}>scratch</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {this.setState({surface:"uit"})}}>uit</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {this.setState({surface:"default"})}}>default</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Light" id="collasible-nav-dropdown" className="ml-4">
